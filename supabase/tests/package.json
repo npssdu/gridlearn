@@ -1,0 +1,12 @@
+{
+  "name": "gridlearn-schema-tests",
+  "private": true,
+  "type": "module",
+  "description": "Pruebas del esquema SQL de GridLearn (RLS, restricciones y límites) con PGlite.",
+  "scripts": {
+    "test": "node schema.test.mjs"
+  },
+  "devDependencies": {
+    "@electric-sql/pglite": "^0.3.0"
+  }
+}

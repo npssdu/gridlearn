@@ -1,0 +1,8 @@
+build/
+.dart_tool/
+android/
+ios/
+windows/
+test/
+supabase/tests/node_modules/
+env.json

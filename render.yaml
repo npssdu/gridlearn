@@ -1,0 +1,43 @@
+# Blueprint de Render: sitio estático con la app Flutter web.
+# En Render: New > Blueprint > selecciona este repositorio.
+services:
+  - type: web
+    name: gridlearn
+    runtime: static
+    buildCommand: bash scripts/build-web.sh
+    staticPublishPath: build/web
+    pullRequestPreviewsEnabled: false
+    envVars:
+      # Valores públicos del proyecto de Supabase (Settings > API).
+      - key: SUPABASE_URL
+        sync: false
+      - key: SUPABASE_ANON_KEY
+        sync: false
+      - key: FLUTTER_VERSION
+        value: 3.41.4
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
+    headers:
+      - path: /*
+        name: X-Content-Type-Options
+        value: nosniff
+      - path: /*
+        name: X-Frame-Options
+        value: DENY
+      - path: /*
+        name: Referrer-Policy
+        value: strict-origin-when-cross-origin
+      - path: /*
+        name: Permissions-Policy
+        value: camera=(), microphone=(), geolocation=(), payment=(), usb=()
+      - path: /*
+        name: Strict-Transport-Security
+        value: max-age=63072000; includeSubDomains
+      - path: /*
+        name: Cross-Origin-Opener-Policy
+        value: same-origin
+      - path: /flutter_service_worker.js
+        name: Cache-Control
+        value: no-cache
